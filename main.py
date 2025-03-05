@@ -1,10 +1,18 @@
+import sys
+
 def main():
     word_count=0
     char_count={}
     
-    print(f"--- Begin report of books/frankenstein.txt ---")
+    if len(sys.argv) != 2:
+        print("Usage: python3 main.py <path_to_book>")
+        sys.exit(1)
+
+    bookfile=sys.argv[1]
+
+    print(f"--- Begin report of {bookfile} ---")
     
-    with open("books/frankenstein.txt", 'r') as f:
+    with open(bookfile, 'r') as f:
         file_contents = f.read()
 
     words=file_contents.split()
@@ -20,7 +28,7 @@ def main():
 
     for char in char_count:
         if char in "abcdefghijklmnopqrstuvwxyz":
-            print(f"The '{char}' character was found {char_count[char]} times")
+            print(f"{char}: {char_count[char]}")
 
     
 
